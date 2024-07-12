@@ -1,0 +1,12 @@
+body{
+  margin: 0;
+  background: linear-gradient(to right, #A36DF7, #6D64ED);
+}
+.App {
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
