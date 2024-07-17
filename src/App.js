@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Login from './pages/Login';
+import Quests from './pages/Quests';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Login/>}/>
+          <Route path='/quests' element={<Quests/>}/>
         </Routes>
       </Router>
 

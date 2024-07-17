@@ -1,15 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-body{
+body,html{
   margin: 0;
-  background: linear-gradient(to right, #A36DF7, #6D64ED);
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #A36DF7, #6D64ED);
+  
 }
-.App {
-  margin: 0;
+button {
+  font-family: 'Poppins';
+  font-weight: 600;
+}
+
+
+
+.container, .container-header {
+  width: 80%;
+  margin: auto;
+  
 }
 
 .container {
-  width: 80%;
-  margin: auto;
+  height: 85vh;
+  position: absolute;
+  transform: translateX(12%);
+  bottom: 0;
+}
+
+h1 {
+  margin-bottom: 40px;
+  font-weight: 600;
 }

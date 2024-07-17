@@ -5,7 +5,7 @@ import menuIcon from '../assets/Hamburger_icon.svg.png'
 const Header = () => {
     return (
         <div className="Header">
-            <div className="container">
+            <div className="container-header">
                 <div className="menu-content">
                     <img className="menu-icon" src={menuIcon} alt="" />
                 </div>
