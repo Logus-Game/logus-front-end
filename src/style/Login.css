@@ -21,6 +21,9 @@
     opacity: 50%;
     
 }
+form {
+    width: 100%;
+}
 
 .input-style {
     width: 100%;
