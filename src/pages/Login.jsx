@@ -3,6 +3,7 @@ import "../style/Login.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
+import BASE_URL from "../scripts/api";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,13 +21,12 @@ const Login = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:5000/login', {
+            const response = await axios.post(`http://localhost:5000/login`, {
                 email: email,
                 password: password
             })
-            console.log(response.status)
+            
             if (response.status === 200) {
-                console.log(response.data.access_token)
                 Cookies.set('token', response.data.access_token);
                 history('/quests')
               } else {
@@ -41,6 +41,8 @@ const Login = () => {
         
 
     }
+
+
 
     return (
         <div className="Login">
@@ -61,7 +63,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-            <div className="footer-login"></div>
+            
         </div>
     )
 }

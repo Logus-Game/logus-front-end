@@ -14,7 +14,7 @@ button {
 
 
 .container, .container-header {
-  width: 80%;
+  width: 90%;
   margin: auto;
   
 }
@@ -22,11 +22,12 @@ button {
 .container {
   height: 85vh;
   position: absolute;
-  transform: translateX(12%);
+  transform: translateX(6%);
   bottom: 0;
 }
 
 h1 {
+  color: white;
   margin-bottom: 40px;
   font-weight: 600;
 }
