@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import Quests from './pages/Quests';
 import Footer from './components/Footer';
+import SoonPage from './pages/SoonPage';
 
 function App() {
   return (<Router>
@@ -16,6 +17,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Login/>}/>
           <Route path='/quests' element={<Quests/>}/>
+          <Route path='/chat' element={<SoonPage/>}/>
+          <Route path='/notifications' element={<SoonPage/>}/>
+          <Route path='/statistics' element={<SoonPage/>}/>
         </Routes>
       
       <FooterWrapper/>

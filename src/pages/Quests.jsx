@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import '../style/Quests.css'
-import Cookies from 'js-cookie';
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import BASE_URL from "../scripts/api"
 import api from "../scripts/api";
 import QuestBox from "../components/QuestBox";
 import Card from "../components/Card";
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 // import "../style/Quests.css"
 
@@ -15,6 +14,7 @@ const Quests = () => {
     const [quests, setQuests] = useState([]);
     const [showCard, setShowCard] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
+    const [date, setDate] = useState('');
 
     const handleShowCard = (id) => {
         for (let i = 0; i < quests.length; i++) {
@@ -25,7 +25,20 @@ const Quests = () => {
 
         }
     }
+    
+    function formatDate(valid) {
+            const dateFromMySQL = valid;
+
+
+            const dateObject = new Date(dateFromMySQL);
+
+
+            const formattedDate = format(dateObject, "dd/MM/yyyy", { locale: ptBR });
+            return formattedDate
+        }
     useEffect(() => {
+
+        
 
         const fetchQuests = async () => {
 
@@ -42,7 +55,7 @@ const Quests = () => {
                     history('/')
                 }
             }
-            
+
         }
 
         fetchQuests();
@@ -57,6 +70,7 @@ const Quests = () => {
                 description={selectedCard.descricao}
                 reward={selectedCard.recompensa}
                 score={selectedCard.pontuacao}
+                valid={formatDate(selectedCard.validade)}
                 status={selectedCard.estado}
                 onClose={() => (setShowCard(false))} />}
             <div className="container">
@@ -66,9 +80,7 @@ const Quests = () => {
                         <QuestBox
                             key={index}
                             title={quest.nome}
-                            description={quest.descricao}
-                            status={quest.estado}
-                            score={quest.pontuacao}
+                            valid={formatDate(quest.validade)}
                             reward={quest.recompensa}
                             id={quest.id}
                             onButtonClick={handleShowCard} />

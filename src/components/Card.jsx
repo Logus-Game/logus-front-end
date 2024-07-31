@@ -3,18 +3,19 @@ import React from "react";
 import '../style/Card.css'
 import menuIcon from '../assets/Hamburger_icon.svg.png'
 
-const Card = ({ show, onClose, title, description, status, reward, score}) => {
+const Card = ({onClose, title, description, status, reward, score, valid}) => {
     return (
         <div className="Card">
             <div className="card-overlay">
                 <div className="content">
                 <button onClick={onClose} className="close-button">[x]</button>
                 <h2>{title}</h2>
-                <p>{description}</p>
+                <p>Missão: {description}</p>
                 <ul>
-                    <li>{status}</li>
-                    <li>{reward}</li>
-                    <li>{score}</li>
+                    <li>Status: {status}</li>
+                    <li>Recompensa: {reward} moedas</li>
+                    {score && <li>Pontuação: {score} pontos</li>}
+                    <li>Data de vencimento: {valid} </li>
                 </ul>
                 </div>
             </div>
