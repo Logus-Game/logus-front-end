@@ -11,28 +11,31 @@ const Footer = () => {
     const location = useLocation();
     return (
         <div className="Footer">
-
+            {location.pathname.includes('/admin') ? 
+            <div/>
+            :
             <ul>
-                <li>
-                    <Link to="/quests"><img src={taskIcon} alt="" />{location.pathname == '/quests' 
-                    ?
-                        <div className="indicator" /> 
-                        :
-                        <div className="indicator-white">
-                        </div>
-                    }</Link>
-                </li>
+            <li>
+                <Link to="/quests"><img src={taskIcon} alt="" />{location.pathname == '/quests' 
+                ?
+                    <div className="indicator" /> 
+                    :
+                    <div className="indicator-white">
+                    </div>
+                }</Link>
+            </li>
 
-                <li><Link to="/chat"><img src={chatIcon} alt="" />{location.pathname == '/chat' ?
-                    <div className="indicator" /> :
-                    <div className="indicator-white"></div>}</Link></li>
-                <li><Link to="/notifications"><img src={notificationIcon} alt="" />{location.pathname == '/notifications' ?
-                    <div className="indicator" /> :
-                    <div className="indicator-white"></div>}</Link></li>
-                <li><Link to="/statistcs"><img src={chartIcon} alt="" />{location.pathname == '/statistcs' ?
-                    <div className="indicator" /> :
-                    <div className="indicator-white"></div>}</Link></li>
-            </ul></div>
+            <li><Link to="/chat"><img src={chatIcon} alt="" />{location.pathname == '/chat' ?
+                <div className="indicator" /> :
+                <div className="indicator-white"></div>}</Link></li>
+            <li><Link to="/notifications"><img src={notificationIcon} alt="" />{location.pathname == '/notifications' ?
+                <div className="indicator" /> :
+                <div className="indicator-white"></div>}</Link></li>
+            <li><Link to="/statistcs"><img src={chartIcon} alt="" />{location.pathname == '/statistcs' ?
+                <div className="indicator" /> :
+                <div className="indicator-white"></div>}</Link></li>
+        </ul>}
+            </div>
 
 
 

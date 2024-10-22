@@ -8,6 +8,8 @@ import Login from './pages/Login';
 import Quests from './pages/Quests';
 import Footer from './components/Footer';
 import SoonPage from './pages/SoonPage';
+import Account from './pages/Account';
+import Players from './pages/Players';
 
 function App() {
   return (<Router>
@@ -19,7 +21,10 @@ function App() {
           <Route path='/quests' element={<Quests/>}/>
           <Route path='/chat' element={<SoonPage/>}/>
           <Route path='/notifications' element={<SoonPage/>}/>
-          <Route path='/statistics' element={<SoonPage/>}/>
+          <Route path='/statistcs' element={<SoonPage/>}/>
+          <Route path='/account' element={<Account/>}/>
+          <Route path='/admin/account' element={<Account/>}/>
+          <Route path='/admin/players' element={<Players/>}/>
         </Routes>
       
       <FooterWrapper/>

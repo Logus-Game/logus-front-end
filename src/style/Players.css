@@ -1,0 +1,7 @@
+.box-player {
+    background-color: white;
+}
+.box-players {
+    display: flex;
+    flex-wrap: wrap;
+}

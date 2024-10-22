@@ -6,6 +6,7 @@ import QuestBox from "../components/QuestBox";
 import Card from "../components/Card";
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import SubmitQuest from "../components/SubmitQuest";
 
 // import "../style/Quests.css"
 
@@ -13,6 +14,7 @@ const Quests = () => {
     const history = useNavigate();
     const [quests, setQuests] = useState([]);
     const [showCard, setShowCard] = useState(false);
+    const [submitScreen, setSubmitScreen] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
     const [date, setDate] = useState('');
 
@@ -24,6 +26,11 @@ const Quests = () => {
             }
 
         }
+    }
+
+    const handleSubmitQuest = () => {
+        setShowCard(false)
+        setSubmitScreen(false)
     }
     
     function formatDate(valid) {
@@ -65,14 +72,18 @@ const Quests = () => {
     }, [])
     return (
         <div className="Quests">
-            {showCard && <Card
+            {showCard && submitScreen == false ? <Card
                 title={selectedCard.nome}
                 description={selectedCard.descricao}
                 reward={selectedCard.recompensa}
                 score={selectedCard.pontuacao}
                 valid={formatDate(selectedCard.validade)}
                 status={selectedCard.estado}
-                onClose={() => (setShowCard(false))} />}
+                onClose={() => (setShowCard(false))} 
+                onClickDone={()=>(setSubmitScreen(true))}/>: submitScreen && showCard && 
+                <SubmitQuest 
+                onSubmit={handleSubmitQuest}
+                onClose={handleSubmitQuest}/>}
             <div className="container">
                 <div className="quests-box">
                     <h1>Suas Quests</h1>

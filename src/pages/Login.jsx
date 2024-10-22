@@ -25,20 +25,25 @@ const Login = () => {
                 email: email,
                 password: password
             })
-            
+
             if (response.status === 200) {
                 Cookies.set('token', response.data.access_token);
-                history('/quests')
-              } else {
+                if(response.data.nivel == 'AA') {
+                    history('/admin/players')
+                } else {
+                    history('/quests')
+                }
+                
+            } else {
                 setError('Email ou senha inválidos.');
-              }
+            }
         } catch (error) {
-            
+
             console.log(error)
-          }
-      
-          setLoading(false);
-        
+        }
+
+        setLoading(false);
+
 
     }
 
@@ -47,23 +52,23 @@ const Login = () => {
     return (
         <div className="Login">
             <div className="container">
-                
+
                 <div className="login-form" >
                     <h1>Login</h1>
                     <form onSubmit={handleSubmit}>
-                    <div className="input-style">
-                        <input name="email" type="text" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
-                        <div className="input-bar" />
-                    </div>
-                    <div className="input-style">
-                        <input name="password" type="password" placeholder="Senha" onChange={(e) => { setPassword(e.target.value) }} />
-                        <div className="input-bar" />
-                    </div>
-                    <button className="login-button" type="submit" disabled={loading}>Entrar</button>
+                        <div className="input-style">
+                            <input name="email" type="text" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
+                            <div className="input-bar" />
+                        </div>
+                        <div className="input-style">
+                            <input name="password" type="password" placeholder="Senha" onChange={(e) => { setPassword(e.target.value) }} />
+                            <div className="input-bar" />
+                        </div>
+                        <button className="login-button" type="submit" disabled={loading}>Entrar</button>
                     </form>
                 </div>
             </div>
-            
+
         </div>
     )
 }
