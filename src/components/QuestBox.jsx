@@ -17,7 +17,7 @@ const QuestBox = ({ title, valid, status, reward, score, id, onButtonClick }) =>
                 Pendente... <img className="status" src={pending} alt="" /></>
             )}</div>
             <div className="fr3">Validade:{valid}</div>
-            <div className="fr4"><button onClick={() => (onButtonClick(id))}>Ver quest</button></div>
+            <div className="fr4"><button onClick={onButtonClick(id)}>Ver quest</button></div>
 
 
         </div>

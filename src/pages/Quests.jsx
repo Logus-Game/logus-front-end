@@ -28,7 +28,23 @@ const Quests = () => {
         }
     }
 
-    const handleSubmitQuest = () => {
+    const handleSubmitQuest = async (id) => {
+
+        try {
+            const response = await api.get(`/quests/status/${id}`,{
+                status: "Em analise"
+            });
+            console.log(response)
+            if (response.status == 401) {
+                history('/')
+            } else if (response.status == 200) {
+                alert('alterado com sucesso')
+            }
+        } catch (e) {
+            if (e.response.status == 401) {
+                history('/')
+            }
+        }
         setShowCard(false)
         setSubmitScreen(false)
     }
@@ -82,10 +98,11 @@ const Quests = () => {
                 onClose={() => (setShowCard(false))} 
                 onClickDone={()=>(setSubmitScreen(true))}/>: submitScreen && showCard && 
                 <SubmitQuest 
+                id={selectedCard.id}
                 onSubmit={handleSubmitQuest}
                 onClose={handleSubmitQuest}/>}
             <div className="container">
-                <div className="quests-box">
+                <div className="quests-box"> 
                     <h1>Suas Quests</h1>
                     {quests.map((quest, index) => (
                         <QuestBox
