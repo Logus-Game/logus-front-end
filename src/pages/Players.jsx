@@ -44,8 +44,10 @@ const Players = () => {
             <div className="container">
                 <h1>Players</h1>
                 <div className="box-players">
-                    {players && players.map(player => (
-                        <PlayerBox title={player.nome}
+                    {players && players.map((player, index)=> (
+                        <PlayerBox 
+                        key={index}
+                        title={player.nome}
                         email={player.email}
                         level={player.nivel}
                         coins={player.moedas}

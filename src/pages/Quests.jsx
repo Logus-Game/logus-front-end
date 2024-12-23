@@ -28,23 +28,27 @@ const Quests = () => {
         }
     }
 
-    const handleSubmitQuest = async (id) => {
+    const handleSubmitQuest = async (id, desc, event) => {
+        event.preventDefault();
 
         try {
-            const response = await api.get(`/quests/status/${id}`,{
-                status: "Em analise"
+            const response = await api.patch(`/quests/status/${id}`, {
+                status: "Em analise",
+                desc: desc
             });
             console.log(response)
             if (response.status == 401) {
                 history('/')
             } else if (response.status == 200) {
-                alert('alterado com sucesso')
+                
             }
         } catch (e) {
             if (e.response.status == 401) {
                 history('/')
+            } else{
+                console.log(e)
             }
-        }
+        } 
         setShowCard(false)
         setSubmitScreen(false)
     }
@@ -60,7 +64,7 @@ const Quests = () => {
             return formattedDate
         }
     useEffect(() => {
-
+        console.log(showCard)
         
 
         const fetchQuests = async () => {
@@ -88,7 +92,9 @@ const Quests = () => {
     }, [])
     return (
         <div className="Quests">
-            {showCard && submitScreen == false ? <Card
+            {console.log("showCard:", showCard, "submitScreen:", submitScreen)}
+
+            {showCard && !submitScreen ? <Card
                 title={selectedCard.nome}
                 description={selectedCard.descricao}
                 reward={selectedCard.recompensa}
@@ -100,7 +106,7 @@ const Quests = () => {
                 <SubmitQuest 
                 id={selectedCard.id}
                 onSubmit={handleSubmitQuest}
-                onClose={handleSubmitQuest}/>}
+                onClose={() => (setSubmitScreen(false))}/>}
             <div className="container">
                 <div className="quests-box"> 
                     <h1>Suas Quests</h1>
@@ -108,6 +114,7 @@ const Quests = () => {
                         <QuestBox
                             key={index}
                             title={quest.nome}
+                            status={quest.estado}
                             valid={formatDate(quest.validade)}
                             reward={quest.recompensa}
                             id={quest.id}

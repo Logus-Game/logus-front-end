@@ -18,7 +18,9 @@ const Card = ({onClose, title, description, status, reward, score, valid, onClic
                     <li>Data de vencimento: {valid} </li>
                     
                 </ul>
+                {status=='Pendente...' &&
                 <button className="done-button" onClick={onClickDone}>Concluir Quest</button>
+                }
                 </div>
             </div>
         </div>
