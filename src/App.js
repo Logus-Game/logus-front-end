@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import SoonPage from './pages/SoonPage';
 import Account from './pages/Account';
 import Players from './pages/Players';
+import Explore from './pages/Explore';
 
 function App() {
   return (<Router>
@@ -21,6 +22,7 @@ function App() {
           <Route path='/quests' element={<Quests/>}/>
           <Route path='/chat' element={<SoonPage/>}/>
           <Route path='/notifications' element={<SoonPage/>}/>
+          <Route path='/explore' element={<Explore/>}/>
           <Route path='/statistcs' element={<SoonPage/>}/>
           <Route path='/account' element={<Account/>}/>
           <Route path='/admin/account' element={<Account/>}/>

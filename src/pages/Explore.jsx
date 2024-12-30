@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import '../style/Quests.css'
+// import '../style/Explore.css'
 import { useNavigate } from "react-router-dom";
 import api from "../scripts/api";
 import QuestBox from "../components/QuestBox";
@@ -8,9 +8,9 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import SubmitQuest from "../components/SubmitQuest";
 
-// import "../style/Quests.css"
 
-const Quests = () => {
+
+const Explore = () => {
     const history = useNavigate();
     const [quests, setQuests] = useState([]);
     const [showCard, setShowCard] = useState(false);
@@ -28,30 +28,7 @@ const Quests = () => {
         }
     }
 
-    const handleSubmitQuest = async (id, desc, event) => {
-        event.preventDefault();
-
-        try {
-            const response = await api.patch(`/quests/status/${id}`, {
-                status: "Em analise",
-                desc: desc
-            });
-            console.log(response)
-            if (response.status == 401) {
-                history('/')
-            } else if (response.status == 200) {
-                
-            }
-        } catch (e) {
-            if (e.response.status == 401) {
-                history('/')
-            } else{
-                console.log(e)
-            }
-        } 
-        setShowCard(false)
-        setSubmitScreen(false)
-    }
+   
     
     function formatDate(valid) {
             const dateFromMySQL = valid;
@@ -70,7 +47,7 @@ const Quests = () => {
         const fetchQuests = async () => {
 
             try {
-                const response = await api.get('/user_quests');
+                const response = await api.get('/quests');
                 console.log(response)
                 if (response.status == 401) {
                     history('/')
@@ -91,34 +68,21 @@ const Quests = () => {
 
     }, [])
     return (
-        <div className="Quests">
+        <div className="Explore">
             {console.log("showCard:", showCard, "submitScreen:", submitScreen)}
 
-            {showCard && !submitScreen ? <Card
-                title={selectedCard.nome}
-                description={selectedCard.descricao}
-                reward={selectedCard.recompensa}
-                score={selectedCard.pontuacao}
-                valid={formatDate(selectedCard.validade)}
-                status={selectedCard.estado}
-                onClose={() => (setShowCard(false))} 
-                onClickDone={()=>(setSubmitScreen(true))}/>: submitScreen && showCard && 
-                <SubmitQuest 
-                id={selectedCard.id}
-                onSubmit={handleSubmitQuest}
-                onClose={() => (setSubmitScreen(false))}/>}
             <div className="container">
                 <div className="quests-box"> 
-                    <h1>Suas Quests</h1>
+                    <h1>Explorar</h1>
                     {quests.map((quest, index) => (
                         <QuestBox
                             key={index}
                             title={quest.nome}
                             status={quest.estado}
-                            valid={formatDate(quest.validade)}
+                            
                             reward={quest.recompensa}
                             id={quest.id}
-                            onButtonClick={handleShowCard} />
+                            />
                     ))}
 
                 </div>
@@ -128,4 +92,4 @@ const Quests = () => {
     )
 }
 
-export default Quests;
+export default Explore;
