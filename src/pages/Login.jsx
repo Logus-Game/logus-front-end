@@ -4,11 +4,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import BASE_URL from "../scripts/api";
+import { showAlert } from '../scripts/alertservice';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useNavigate();
 
@@ -16,32 +17,35 @@ const Login = () => {
         event.preventDefault();
 
         setLoading(true)
-        if (!email || !password) {
-            setError('Preencha todos os campos.');
-        }
-
-        try {
-            const response = await axios.post(`http://localhost:5000/login`, {
-                email: email,
-                password: password
-            })
-
-            if (response.status === 200) {
-                Cookies.set('token', response.data.access_token);
-                if(response.data.nivel == 'AA') {
-                    history('/admin/players')
+        if (email.length==0 || password.length==0) {
+            showAlert('Erro', 'Preecha todos os campos', 'error')
+        } else {
+            try {
+                const response = await axios.post(`http://localhost:5000/login`, {
+                    email: email,
+                    password: password
+                })
+                    console.log(response)
+                if (response.status === 200) {
+                    Cookies.set('token', response.data.access_token);
+                    if(response.data.nivel == 'AA') {
+                        history('/admin/players')
+                    } else {
+                        history('/quests')
+                    }
+                    
                 } else {
-                    history('/quests')
+                    showAlert('Erro', 'Credenciais inválidas', 'error')
+                    
                 }
-                
-            } else {
-                setError('Email ou senha inválidos.');
+            } catch (err) {
+                showAlert('Erro', 'Credenciais inválidas', 'error')
+                console.log(err)
             }
-        } catch (error) {
-
-            console.log(error)
+    
         }
 
+        
         setLoading(false);
 
 
