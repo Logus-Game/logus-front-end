@@ -13,23 +13,23 @@ const QuestBox = ({ title, valid, status, reward, score, id, onButtonClick }) =>
     return (
         <div className="Box">
             {location.pathname == '/quests' ?
-            <>
-            <div className="fr1"><span className="title">{title}</span></div>
-            <div className="fr2">{status == 'Concluída' ? (<>
-                {status}! <img className="status" src={complete} alt="" /></>
-            ) : (<>
-                {status} <img className="status" src={pending} alt="" /></>
-            )}</div>
-            <div className="fr3">Validade:{valid}</div>
-            <div className="fr4"><button onClick={()=>{onButtonClick(id)}}>Ver quest</button></div>
-            </>
+                <>
+                    <div className="fr1"><span className="title">{title}</span></div>
+                    <div className="fr2">{status == 'Concluída' ? (<>
+                        {status}! <img className="status" src={complete} alt="" /></>
+                    ) : (<>
+                        {status} <img className="status" src={pending} alt="" /></>
+                    )}</div>
+                    <div className="fr3">Validade:{valid}</div>
+                    <div className="fr4"><button onClick={() => { onButtonClick(id) }}>Ver quest</button></div>
+                </>
                 :
                 <>
-            <div className="fr1"><span className="title">{title}</span></div>
-            <div className="fr2"><button onClick={()=>{onButtonClick(id)}}>Se Inscrever</button></div>
-            <div className="fr3">Inscrição: </div>
-            <div className="fr4"><button onClick={()=>{onButtonClick(id)}}>Ver quest</button></div>
-            </>
+                    <div className="fr1"><span className="title">{title}</span></div>
+                    <div className="fr2"><button onClick={() => { onButtonClick(id) }}>Se Inscrever</button></div>
+                    <div className="fr3">Inscrição: </div>
+                    <div className="fr4"><button onClick={() => { onButtonClick(id) }}>Ver quest</button></div>
+                </>
             }
 
         </div>

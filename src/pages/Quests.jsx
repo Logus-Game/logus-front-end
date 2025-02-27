@@ -3,10 +3,10 @@ import '../style/Quests.css'
 import { useNavigate } from "react-router-dom";
 import api from "../scripts/api";
 import QuestBox from "../components/QuestBox";
-import Card from "../components/Card";
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import SubmitQuest from "../components/SubmitQuest";
+import QuestCardOverlay from "../components/QuestCardOverlay";
 
 // import "../style/Quests.css"
 
@@ -94,7 +94,7 @@ const Quests = () => {
         <div className="Quests">
             {console.log("showCard:", showCard, "submitScreen:", submitScreen)}
 
-            {showCard && !submitScreen ? <Card
+            {showCard && !submitScreen ? <QuestCardOverlay
                 title={selectedCard.nome}
                 description={selectedCard.descricao}
                 reward={selectedCard.recompensa}

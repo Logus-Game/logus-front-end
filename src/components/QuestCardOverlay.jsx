@@ -3,9 +3,9 @@ import React from "react";
 import '../style/Card.css'
 import menuIcon from '../assets/Hamburger_icon.svg.png'
 
-const Card = ({onClose, title, description, status, reward, score, valid, onClickDone}) => {
+const QuestCardOverlay = ({onClose, title, description, status, reward, score, valid, onClickDone}) => {
     return (
-        <div className="Card">
+        <div className="QuestCardOverlay">
             <div className="card-overlay">
                 <div className="content">
                 <button onClick={onClose} className="close-button">[x]</button>
@@ -27,4 +27,4 @@ const Card = ({onClose, title, description, status, reward, score, valid, onClic
     )
 }
 
-export default Card;
+export default QuestCardOverlay;

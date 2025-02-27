@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../scripts/api";
 import QuestBox from "../components/QuestBox";
-import Card from "../components/Card";
+import Card from "../components/QuestCardOverlay";
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import SubmitQuest from "../components/SubmitQuest";
+import ExploreQuestBox from "../components/ExploreQuestBox";
 
 
 
@@ -75,12 +76,11 @@ const Explore = () => {
                 <div className="quests-box"> 
                     <h1>Explorar</h1>
                     {quests.map((quest, index) => (
-                        <QuestBox
+                        <ExploreQuestBox
                             key={index}
                             title={quest.nome}
-                            status={quest.estado}
                             
-                            reward={quest.recompensa}
+                            cost={quest.custo}
                             id={quest.id}
                             />
                     ))}

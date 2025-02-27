@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from "react";
 
 import "../style/Players.css"
-import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
 import api from "../scripts/api";
 import PlayerBox from "../components/PlayerBox";
+import PlayerCardOverlay from "../components/PlayerCardOverlay";
 
 
 const Players = () => {
     const [players, setPlayers] = useState();
+    const [edit, setEdit] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
+    const [showCard, setShowCard] = useState(false);
     const history = useNavigate();
 
-    const handleLogout = () => {
-        Cookies.remove('token')
-        history('/')
+    const handleShowCard = (id) => {
+        
+        for (let i = 0; i < players.length; i++) {
+            if (players[i].id_usuario == id) {
+                console.log("banana")
+                setSelectedCard(players[i])
+                setShowCard(true)
+            }
+            
+        }
     }
 
+    
     useEffect(() => {
         const fetchInfo = async () => {
 
@@ -41,6 +52,19 @@ const Players = () => {
     }, [])
     return (
         <div className="Players">
+            onClose, id, title, email, level, coins, onClickEdit, edit
+            {showCard && 
+            <PlayerCardOverlay
+            onClose={()=>{setShowCard(false)}}
+            id={selectedCard.id_usuario}
+            title={selectedCard.nome}
+            email={selectedCard.email}
+            level={selectedCard.nivel}
+            coins={selectedCard.moedas}
+            edit={edit}
+            onClickEdit={() => {setEdit(!edit)}}
+            />
+            }
             <div className="container">
                 <h1>Players</h1>
                 <div className="box-players">
@@ -51,6 +75,8 @@ const Players = () => {
                         email={player.email}
                         level={player.nivel}
                         coins={player.moedas}
+                        id={player.id_usuario}
+                        onButtonClick={handleShowCard}
                     />
                     ))}
                 </div>
