@@ -10,6 +10,7 @@ import PlayerCardOverlay from "../components/PlayerCardOverlay";
 const Players = () => {
     const [players, setPlayers] = useState();
     const [edit, setEdit] = useState(false);
+    const [editInfos, setEditInfos] = useState({})
     const [selectedCard, setSelectedCard] = useState(null);
     const [showCard, setShowCard] = useState(false);
     const history = useNavigate();
@@ -21,8 +22,24 @@ const Players = () => {
                 console.log("banana")
                 setSelectedCard(players[i])
                 setShowCard(true)
+                console.log(id)
             }
             
+        }
+    }
+
+    const handleSubimmitEdit = async (id, name, email, level, coins) => {
+        try {
+            console.log(id)
+            const response = await api.patch(`/players/info/${id}`, {
+                id:id,
+                name: name,
+                email: email,
+                level:level,
+                coins:coins
+            });
+        } catch(e) {
+            console.log(e)
         }
     }
 
@@ -52,10 +69,11 @@ const Players = () => {
     }, [])
     return (
         <div className="Players">
-            onClose, id, title, email, level, coins, onClickEdit, edit
             {showCard && 
             <PlayerCardOverlay
-            onClose={()=>{setShowCard(false)}}
+            onClose={()=>{setShowCard(false) 
+                setEdit(false)
+            }}
             id={selectedCard.id_usuario}
             title={selectedCard.nome}
             email={selectedCard.email}
@@ -63,6 +81,7 @@ const Players = () => {
             coins={selectedCard.moedas}
             edit={edit}
             onClickEdit={() => {setEdit(!edit)}}
+            onClickDone={handleSubimmitEdit}
             />
             }
             <div className="container">

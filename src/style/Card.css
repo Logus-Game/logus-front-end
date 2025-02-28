@@ -45,7 +45,28 @@
     font-weight: 300;
   }
 
+  .cancel-button {
+    margin-top: 10px;
+    border-radius: 7px;
+    border: none;
+    background-color: rgb(119, 119, 119);
+    color: white;
+    width: 50%;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
   #submit-description {
     height: 100px;
     width:250px;
+  }
+
+  #player-name {
+    font-size: large;
+    
+  }
+  .ipt-card-player {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
   }
