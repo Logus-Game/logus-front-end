@@ -12,7 +12,9 @@ api.interceptors.request.use(config => {
     config.headers['Authorization'] = `Bearer ${token}`;
   }
   return config;
-}, error => {
+}, (error) => {
+  if(error.response && (error.response.status === 401 || error.response.status === 403))
+  window.location.href = "/login"
   return Promise.reject(error);
 });
 

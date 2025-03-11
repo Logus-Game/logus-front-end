@@ -11,6 +11,7 @@ import SoonPage from './pages/SoonPage';
 import Account from './pages/Account';
 import Players from './pages/Players';
 import Explore from './pages/Explore';
+import Bank from './pages/Bank';
 
 function App() {
   return (<Router>
@@ -27,6 +28,8 @@ function App() {
           <Route path='/account' element={<Account/>}/>
           <Route path='/admin/account' element={<Account/>}/>
           <Route path='/admin/players' element={<Players/>}/>
+          <Route path='/admin/bank' element={<Bank/>}/>
+          <Route path='/admin/quests' element={<SoonPage/>}/>
         </Routes>
       
       <FooterWrapper/>

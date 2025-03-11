@@ -24,9 +24,10 @@ const PlayerCardOverlay = ({onClose, id, title, email, level, coins, onClickEdit
                 <li>Moedas: <input type="text"  className='ipt-card-player' ref={coinsRef} defaultValue={coins} />moedas</li>
                 
             </ul>
-            
+            <div className="buttons">
             <button className="cancel-button" onClick={() => {onClickEdit(id, edit)}}>Cancelar</button>
             <button className="done-button" onClick={() => {onClickDone(id, nameRef.current.value, emailRef.current.value, levelRef.current.value, coinsRef.current.value)}}>Concluído</button>
+            </div>
             </div>
             :
             <div className="content">

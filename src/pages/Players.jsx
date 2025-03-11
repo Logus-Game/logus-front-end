@@ -38,6 +38,10 @@ const Players = () => {
                 level:level,
                 coins:coins
             });
+            if(response.status == 200) {
+                setShowCard(false)
+                setEdit(false)
+            }
         } catch(e) {
             console.log(e)
         }

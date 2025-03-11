@@ -8,7 +8,7 @@ import { ptBR } from 'date-fns/locale';
 import SubmitQuest from "../components/SubmitQuest";
 import QuestCardOverlay from "../components/QuestCardOverlay";
 
-// import "../style/Quests.css"
+
 
 const Quests = () => {
     const history = useNavigate();
