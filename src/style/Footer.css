@@ -25,6 +25,10 @@
     margin: auto;
 }
 
+.Footer img {
+    width: 35px;
+}
+
 .indicator {
     width: 33px;
     height: 5px;

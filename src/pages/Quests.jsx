@@ -3,7 +3,7 @@ import '../style/Quests.css'
 import { useNavigate } from "react-router-dom";
 import api from "../scripts/api";
 import QuestBox from "../components/QuestBox";
-import { format } from 'date-fns';
+import { format, formatDate } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import SubmitQuest from "../components/SubmitQuest";
 import QuestCardOverlay from "../components/QuestCardOverlay";
@@ -40,32 +40,32 @@ const Quests = () => {
             if (response.status == 401) {
                 history('/')
             } else if (response.status == 200) {
-                
+
             }
         } catch (e) {
             if (e.response.status == 401) {
                 history('/')
-            } else{
+            } else {
                 console.log(e)
             }
-        } 
+        }
         setShowCard(false)
         setSubmitScreen(false)
     }
-    
+
     function formatDate(valid) {
-            const dateFromMySQL = valid;
+        const dateFromMySQL = valid;
 
 
-            const dateObject = new Date(dateFromMySQL);
+        const dateObject = new Date(dateFromMySQL);
 
 
-            const formattedDate = format(dateObject, "dd/MM/yyyy", { locale: ptBR });
-            return formattedDate
-        }
+        const formattedDate = format(dateObject, "dd/MM/yyyy", { locale: ptBR });
+        return formattedDate
+    }
     useEffect(() => {
         console.log(showCard)
-        
+
 
         const fetchQuests = async () => {
 
@@ -101,14 +101,14 @@ const Quests = () => {
                 score={selectedCard.pontuacao}
                 valid={formatDate(selectedCard.validade)}
                 status={selectedCard.estado}
-                onClose={() => (setShowCard(false))} 
-                onClickDone={()=>(setSubmitScreen(true))}/>: submitScreen && showCard && 
-                <SubmitQuest 
+                onClose={() => (setShowCard(false))}
+                onClickDone={() => (setSubmitScreen(true))} /> : submitScreen && showCard &&
+            <SubmitQuest
                 id={selectedCard.id}
                 onSubmit={handleSubmitQuest}
-                onClose={() => (setSubmitScreen(false))}/>}
+                onClose={() => (setSubmitScreen(false))} />}
             <div className="container">
-                <div className="quests-box"> 
+                <div className="quests-box">
                     <h1>Suas Quests</h1>
                     {quests.map((quest, index) => (
                         <QuestBox

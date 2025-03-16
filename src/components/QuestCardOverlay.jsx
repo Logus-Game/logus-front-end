@@ -1,9 +1,11 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import '../style/Card.css'
 import menuIcon from '../assets/Hamburger_icon.svg.png'
 
 const QuestCardOverlay = ({onClose, title, description, status, reward, score, valid, onClickDone}) => {
+
+    
     return (
         <div className="QuestCardOverlay">
             <div className="card-overlay">
@@ -18,7 +20,7 @@ const QuestCardOverlay = ({onClose, title, description, status, reward, score, v
                     <li>Data de vencimento: {valid} </li>
                     
                 </ul>
-                {status=='Pendente...' &&
+                {status=='Pendente' &&
                 <button className="done-button" onClick={onClickDone}>Concluir Quest</button>
                 }
                 </div>

@@ -1,4 +1,5 @@
 .Box {
+    flex-shrink: 0;
     width: 100%;
     height: 80px;
     border-radius: 20px;

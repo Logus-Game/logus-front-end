@@ -29,18 +29,31 @@ const Explore = () => {
         }
     }
 
-   
-    
-    function formatDate(valid) {
-            const dateFromMySQL = valid;
+    const subscribe = async (id_quest, cost) => {
 
-
-            const dateObject = new Date(dateFromMySQL);
-
-
-            const formattedDate = format(dateObject, "dd/MM/yyyy", { locale: ptBR });
-            return formattedDate
+        try {
+            const response = await api.post('/subscribe', {
+                quest_id: id_quest,
+                inscricao: cost
+            });
+            console.log(response)
+            if (response.status == 401) {
+                history('/')
+            } else if (response.status == 200) {
+                console.log(response)
+            }
+        } catch (e) {
+            
+            if (e.response.status == 401) {
+                history('/')
+            } else {
+                console.log(e)
+            }
         }
+
+    }
+    
+    
     useEffect(() => {
         console.log(showCard)
         
@@ -79,10 +92,11 @@ const Explore = () => {
                         <ExploreQuestBox
                             key={index}
                             title={quest.nome}
-                            
+                            onButtonClick={subscribe}
                             cost={quest.custo}
-                            id={quest.id}
+                            id_quest={quest.id_quest}
                             />
+                            
                     ))}
 
                 </div>
