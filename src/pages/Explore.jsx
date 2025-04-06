@@ -61,7 +61,7 @@ const Explore = () => {
         const fetchQuests = async () => {
 
             try {
-                const response = await api.get('/quests');
+                const response = await api.get('/course_quests');
                 console.log(response)
                 if (response.status == 401) {
                     history('/')

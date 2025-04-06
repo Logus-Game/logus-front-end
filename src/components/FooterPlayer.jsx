@@ -27,9 +27,9 @@ const FooterPlayer = () => {
             <li><Link to="/chat"><img src={chatIcon} alt="" />{location.pathname == '/chat' ?
                 <div className="indicator" /> :
                 <div className="indicator-white"></div>}</Link></li>
-            <li><Link to="/explore"><img src={exploreIcon} alt="" />{location.pathname == '/explore' ?
+            {/* <li><Link to="/explore"><img src={exploreIcon} alt="" />{location.pathname == '/explore' ?
                 <div className="indicator" /> :
-                <div className="indicator-white"></div>}</Link></li>
+                <div className="indicator-white"></div>}</Link></li> */}
             <li><Link to="/notifications"><img src={notificationIcon} alt="" />{location.pathname == '/notifications' ?
                 <div className="indicator" /> :
                 <div className="indicator-white"></div>}</Link></li>

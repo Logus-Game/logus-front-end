@@ -7,10 +7,11 @@ import { format, formatDate } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import SubmitQuest from "../components/SubmitQuest";
 import QuestCardOverlay from "../components/QuestCardOverlay";
+import ExploreQuestBox from "../components/ExploreQuestBox";
 
 
 
-const Quests = () => {
+const AdminQuests = () => {
     const history = useNavigate();
     const [quests, setQuests] = useState([]);
     const [showCard, setShowCard] = useState(false);
@@ -28,13 +29,14 @@ const Quests = () => {
         }
     }
 
-    const handleSubmitQuest = async (id, desc, event) => {
+    const handleSubmitQuest = async (id_quest, id_user, recompensa, event) => {
         event.preventDefault();
 
         try {
-            const response = await api.patch(`/quests/status/${id}`, {
-                status: "Em analise",
-                desc: desc
+            const response = await api.patch(`/subscribe`, {
+                quest_id: id_quest,
+                id_user: id_user,
+                recompensa: recompensa
             });
             console.log(response)
             if (response.status == 401) {
@@ -70,7 +72,7 @@ const Quests = () => {
         const fetchQuests = async () => {
 
             try {
-                const response = await api.get(location.pathname.includes('admin') ? '/quests': '/user_quests');
+                const response = await api.get('/quests');
                 console.log(response)
                 if (response.status == 401) {
                     history('/')
@@ -91,7 +93,7 @@ const Quests = () => {
 
     }, [])
     return (
-        <div className="Quests">
+        <div className="AdminQuests">
             {console.log("showCard:", showCard, "submitScreen:", submitScreen)}
 
             {showCard && !submitScreen ? <QuestCardOverlay
@@ -109,16 +111,14 @@ const Quests = () => {
                 onClose={() => (setSubmitScreen(false))} />}
             <div className="container">
                 <div className="quests-box">
-                    <h1>Suas Quests</h1>
+                    <h1>Quests</h1>
                     {quests.map((quest, index) => (
-                        <QuestBox
-                            key={index}
-                            title={quest.nome}
-                            status={quest.estado}
-                            valid={formatDate(quest.validade)}
-                            reward={quest.recompensa}
-                            id={quest.id}
-                            onButtonClick={handleShowCard} />
+                        <ExploreQuestBox
+                        key={index}
+                        title={quest.nome}
+                        cost={quest.custo}
+                        id_quest={quest.id_quest}
+                        />
                     ))}
 
                 </div>
@@ -128,4 +128,4 @@ const Quests = () => {
     )
 }
 
-export default Quests;
+export default AdminQuests;

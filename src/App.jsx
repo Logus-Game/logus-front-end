@@ -12,6 +12,7 @@ import Account from './pages/Account';
 import Players from './pages/Players';
 import Explore from './pages/Explore';
 import Bank from './pages/Bank';
+import AdminQuests from './pages/AdminQuests';
 
 function App() {
   return (<Router>
@@ -23,13 +24,13 @@ function App() {
           <Route path='/quests' element={<Quests/>}/>
           <Route path='/chat' element={<SoonPage/>}/>
           <Route path='/notifications' element={<SoonPage/>}/>
-          <Route path='/explore' element={<Explore/>}/>
+          {/* <Route path='/explore' element={<Explore/>}/> */}
           <Route path='/statistcs' element={<SoonPage/>}/>
           <Route path='/account' element={<Account/>}/>
           <Route path='/admin/account' element={<Account/>}/>
           <Route path='/admin/players' element={<Players/>}/>
           <Route path='/admin/bank' element={<Bank/>}/>
-          <Route path='/admin/quests' element={<SoonPage/>}/>
+          <Route path='/admin/quests' element={<AdminQuests/>}/>
         </Routes>
       
       <FooterWrapper/>

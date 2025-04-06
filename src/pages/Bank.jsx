@@ -7,6 +7,7 @@ import api from "../scripts/api";
 import TransferBox from "../components/TransferBox";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { showAlert } from "../scripts/alertservice";
 
 
 
@@ -17,7 +18,7 @@ const Bank = () => {
     const [transfers, setTransfers] = useState([]);
 
     const fetchInfo = async () => {
-        try {
+        
         const response = await api.get('/user-data');
         console.log(response)
         if (response.status == 200) {
@@ -26,14 +27,11 @@ const Bank = () => {
             throw new Error(response);
             
         }
-    } catch (e) {
-        
-        history('/')
-    }
-    }
+    } 
+    
 
     const fetchTransfers = async() => {
-        try {
+        
             const response = await api.get('/transfers');
             console.log(response)
             if (response.status == 200) {
@@ -43,9 +41,7 @@ const Bank = () => {
                 throw new Error(response);
                 
             }
-        } catch (e) {
-            console.log(e)
-        }
+        
     }
 
      function formatDate(valid) {
@@ -62,9 +58,22 @@ const Bank = () => {
 
     useEffect(() => {
         const controller = new AbortController();
-     
+        try {
+            setTimeout(() => {
+                fetchTransfers();
+            }, 100);
             fetchInfo();
-            fetchTransfers();
+            
+        } catch (e) {
+            if(e.response.status == 401) {
+               
+                history('/')
+            } else {
+
+                fetchTransfers();
+            }
+        }
+            
         
         
         return () => controller.abort();

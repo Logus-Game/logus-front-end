@@ -19,8 +19,8 @@ const ExploreQuestBox = ({ title, cost, id_quest, onButtonClick }) => {
             
                 <>
                     <div className="fr1"><span className="title">{title}</span></div>
-                    <div className="fr2"><button onClick={() => { onButtonClick(id_quest, cost) }}>Se Inscrever</button></div>
-                    <div className="fr3">Inscrição: {cost}</div>
+                    <div className="fr2"><button onClick={() => { onButtonClick(id_quest, cost) }}>Inscrever Players</button></div>
+                    <div className="fr3">Recompensa: {cost}</div>
                     <div className="fr4"><button>Ver quest</button></div>
                 </>
             

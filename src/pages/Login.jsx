@@ -18,7 +18,7 @@ const Login = () => {
 
         setLoading(true)
         if (email.length==0 || password.length==0) {
-            showAlert('Erro', 'Preecha todos os campos', 'error')
+            showAlert('Erro', 'Preecha todos os campos', 'info')
         } else {
             try {
                 const response = await axios.post(`http://localhost:5000/login`, {
