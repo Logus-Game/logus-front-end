@@ -13,6 +13,7 @@ import Players from './pages/Players';
 import Explore from './pages/Explore';
 import Bank from './pages/Bank';
 import AdminQuests from './pages/AdminQuests';
+import SubmissionsPage from './pages/SubmissionsPage';
 
 function App() {
   return (<Router>
@@ -30,6 +31,7 @@ function App() {
           <Route path='/admin/account' element={<Account/>}/>
           <Route path='/admin/players' element={<Players/>}/>
           <Route path='/admin/bank' element={<Bank/>}/>
+          <Route path='/admin/submissionsPage' element={<SubmissionsPage/>}/>
           <Route path='/admin/quests' element={<AdminQuests/>}/>
         </Routes>
       

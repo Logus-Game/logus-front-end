@@ -1,0 +1,47 @@
+.SubmissionCard {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 21px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: start;
+}
+
+.SubmissionCard h3 {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.SubmissionCard-text-description {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #555;
+}
+.SubmissionCard-text-user {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.SubmissionCard button {
+  background-color: #d9d9d9;
+  color: #262626;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.SubmissionCard button:hover {
+  background-color: #5e22c3;
+  color: #d9d9d9;
+}

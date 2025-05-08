@@ -1,0 +1,11 @@
+.SubmissionsPage {
+    padding: 20px;
+    text-align: center;
+}
+
+.submissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
