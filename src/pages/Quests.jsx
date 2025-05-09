@@ -28,30 +28,31 @@ const Quests = () => {
         }
     }
 
-    const handleSubmitQuest = async (id, desc, event) => {
+    const handleSubmitQuest = async (id, desc, provaFile, event) => {
         event.preventDefault();
-
+    
+        const formData = new FormData();
+        formData.append("desc", desc);
+        formData.append("prova", provaFile);
+    
         try {
-            const response = await api.patch(`/quests/status/${id}`, {
-                status: "Em analise",
-                desc: desc
+            const response = await api.patch(`/quests/status/${id}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
             });
-            console.log(response)
-            if (response.status == 401) {
-                history('/')
-            } else if (response.status == 200) {
-
+    
+            if (response.status === 201) {
+                alert("Submissão enviada com sucesso!");
             }
         } catch (e) {
-            if (e.response.status == 401) {
-                history('/')
-            } else {
-                console.log(e)
-            }
+            console.error("Erro na submissão:", e);
         }
-        setShowCard(false)
-        setSubmitScreen(false)
-    }
+    
+        setShowCard(false);
+        setSubmitScreen(false);
+    };
+    
 
     function formatDate(valid) {
         const dateFromMySQL = valid;
@@ -86,7 +87,6 @@ const Quests = () => {
         }
 
         fetchQuests();
-
 
 
     }, [])

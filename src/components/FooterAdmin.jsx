@@ -4,6 +4,7 @@ import taskIcon from "../assets/task.png"
 import playersIcon from "../assets/players-icon.png"
 import bankIcon from "../assets/bank-icon.png"
 import { Link, useLocation } from "react-router-dom";
+import aprovado from '../assets/aprovado.png'; 
 
 
 const FooterAdmin = () => {
@@ -28,6 +29,17 @@ const FooterAdmin = () => {
             <li><Link to="/admin/quests"><img src={taskIcon} alt="" />{location.pathname == '/admin/quests' ?
                 <div className="indicator" /> :
                 <div className="indicator-white"></div>}</Link></li>
+
+                <li>
+                    <Link to="/admin/submissionsPage">
+                        <img src={aprovado} alt="Submissões" />
+                        {location.pathname === '/admin/submissionsPage' ? (
+                            <div className="indicator" />
+                        ) : (
+                            <div className="indicator-white" />
+                        )}
+                    </Link>
+                </li>
         </ul>
             </div>
 

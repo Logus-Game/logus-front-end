@@ -8,7 +8,7 @@ import { ptBR } from 'date-fns/locale';
 import SubmitQuest from "../components/SubmitQuest";
 import QuestCardOverlay from "../components/QuestCardOverlay";
 import ExploreQuestBox from "../components/ExploreQuestBox";
-
+import AddQuestForm from "../components/AddQuestForm";
 
 
 const AdminQuests = () => {
@@ -18,6 +18,8 @@ const AdminQuests = () => {
     const [submitScreen, setSubmitScreen] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
     const [date, setDate] = useState('');
+    const [showForm, setShowForm] = useState(false);
+    
 
     const handleShowCard = (id) => {
         for (let i = 0; i < quests.length; i++) {
@@ -28,6 +30,22 @@ const AdminQuests = () => {
 
         }
     }
+
+    const handleAddQuest = async (questData) => {
+        try {
+            const response = await api.post('/quests', questData);
+            if (response.status === 201) {
+                alert('Quest adicionada com sucesso!');
+                setShowForm(false);
+                const newQuest = response.data;
+                setQuests(prev => [...prev, newQuest]);
+            }
+        } catch (e) {
+            console.error('Erro ao adicionar quest:', e);
+            alert('Erro ao adicionar quest');
+        }
+    };
+    
 
     const handleSubmitQuest = async (id_quest, id_user, recompensa, event) => {
         event.preventDefault();
@@ -94,6 +112,11 @@ const AdminQuests = () => {
     }, [])
     return (
         <div className="AdminQuests">
+
+             <button onClick={() => setShowForm(true)}>Inserir Quest</button>
+            
+            {showForm && <AddQuestForm onSubmit={handleAddQuest} setShowForm={setShowForm} />}
+
             {console.log("showCard:", showCard, "submitScreen:", submitScreen)}
 
             {showCard && !submitScreen ? <QuestCardOverlay
